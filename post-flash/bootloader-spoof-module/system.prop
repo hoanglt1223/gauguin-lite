@@ -1,0 +1,10 @@
+# Magisk applies these with resetprop at boot, overriding the values the bootloader set on the
+# kernel command line (which the ROM's build-time properties cannot change). Apps that read these
+# then see a locked, verified device. Hardware key attestation (TEE) is NOT affected by this.
+ro.boot.verifiedbootstate=green
+ro.boot.flash.locked=1
+ro.boot.veritymode=enforcing
+ro.boot.vbmeta.device_state=locked
+vendor.boot.vbmeta.device_state=locked
+ro.secureboot.lockstate=locked
+sys.oem_unlock_allowed=0

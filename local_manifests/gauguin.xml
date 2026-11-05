@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <!-- Device tree and kernel come from LineageOS via breakfast. Add the proprietary blob repo and MIUI port repos here. -->
+
+  <remote name="gitlab" fetch="https://gitlab.com" />
+  <!-- MindTheGapps for Android 17 (lineage-24.0). Branch names follow the Android dessert codename. -->
+  <project path="vendor/gapps" name="MindTheGapps/vendor_gapps" remote="gitlab" revision="cinnamonbun" clone-depth="1" />
+</manifest>

@@ -1,0 +1,6 @@
+id=gauguin_lockspoof
+name=gauguin Bootloader Lock Spoof
+version=v1
+versionCode=1
+author=gauguin-lite
+description=Reports the bootloader as locked and verified boot as green to apps that read boot properties. Does not defeat hardware-backed (TEE) key attestation.

@@ -1,0 +1,11 @@
+# Enable the Lite swapfile once /data is mounted and decrypted.
+service lite-swapfile /system/bin/lite-swapfile.sh
+    class late_start
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:magisk:s0
+
+on property:sys.boot_completed=1
+    start lite-swapfile

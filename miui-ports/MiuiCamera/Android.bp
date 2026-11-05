@@ -1,0 +1,18 @@
+// MIUI Camera 4.5.002030.1 from MIUI 14.0.4.0 SJSEUXM (gauguin). Populated by scripts/stage-camera-ports.py.
+// Keeps Xiaomi's signature: the app does not use a shared system UID, so it does not need the platform key.
+android_app_import {
+    name: "MiuiCamera",
+    apk: "MiuiCamera.apk",
+    presigned: true,
+    privileged: true,
+    dex_preopt: {
+        enabled: false,
+    },
+    required: ["privapp-permissions-miuicamera.xml"],
+}
+
+prebuilt_etc {
+    name: "privapp-permissions-miuicamera.xml",
+    src: "privapp-permissions-miuicamera.xml",
+    sub_dir: "permissions",
+}

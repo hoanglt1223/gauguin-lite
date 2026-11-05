@@ -1,0 +1,29 @@
+# MIUI Camera dependency report
+
+Staged 16 libraries:
+
+- `/product/etc/device_features/gauguin.xml` (needed by data)
+- `/product/etc/device_features/gauguinpro.xml` (needed by data)
+- `/system/lib64/libcamera_jpegutil_jni.xiaomi.so` (needed by apk-string)
+- `/vendor/etc/camera/102_SummerDay.png` (needed by data)
+- `/vendor/etc/camera/103_Fantasy.png` (needed by data)
+- `/vendor/etc/camera/104_Meet.png` (needed by data)
+- `/vendor/etc/camera/105_WindSing.png` (needed by data)
+- `/vendor/etc/camera/106_Lost.png` (needed by data)
+- `/vendor/etc/camera/107_Central.png` (needed by data)
+- `/vendor/etc/camera/108_NorthernEurope.png` (needed by data)
+- `/vendor/etc/camera/109_Rome.png` (needed by data)
+- `/vendor/etc/camera/110_BlackGold.png` (needed by data)
+- `/vendor/etc/camera/111_GreenOrange.png` (needed by data)
+- `/vendor/etc/camera/112_CyberPunk.png` (needed by data)
+- `/vendor/etc/camera/113_BlackIce.png` (needed by data)
+- `/vendor/etc/camera/megviifacepp_0_5_2_model` (needed by data)
+
+Not found in MIUI or LineageOS (6), usually harmless string matches:
+
+- `libCNamaSDK.so` (apk-string)
+- `libcamera_chroma_nr.xiaomi.so` (apk-string)
+- `libcamera_ispinterface_jni.xiaomi.so` (apk-string)
+- `libcamera_sound_effect.so` (apk-string)
+- `libfuai.so` (apk-string)
+- `libmagicvideosky.so` (apk-string)

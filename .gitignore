@@ -1,0 +1,15 @@
+out/
+*.zip
+*.img
+miui-ports/**/*.apk
+miui-dump/
+stock/
+miui-ports/**/lib/
+miui-ports/**/deps/
+post-flash/*.zip
+post-flash/gauguin-lockspoof.zip
+scripts/.magisk-module-installer.sh
+post-flash/Vector-*.zip
+post-flash/Shamiko-*.zip
+post-flash/PlayIntegrityFix_*.zip
+miflash_unlock_en_*/

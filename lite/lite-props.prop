@@ -1,0 +1,15 @@
+# System properties for gauguin Lite. Added to PRODUCT_PRODUCT_PROPERTIES by lite.mk.
+
+# Report the bootloader as locked and verified boot as green. Apps that only read these
+# properties stop warning; this does NOT affect hardware-backed Play Integrity (TEE).
+ro.boot.verifiedbootstate=green
+ro.boot.vbmeta.device_state=locked
+ro.boot.flash.locked=1
+vendor.boot.vbmeta.device_state=locked
+ro.secureboot.lockstate=locked
+
+# Self-hosted OTA: point the in-ROM Updater at your own server (see scripts/make-ota-json.py).
+# Replace this with where you host gauguin.json. Remove the line entirely to keep the default
+# LineageOS endpoint (which has no builds for a self-built ROM, so Updater just shows "up to date").
+lineage.updater.uri=https://YOUR-OTA-HOST/gauguin/gauguin.json
+
