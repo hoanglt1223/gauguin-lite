@@ -330,3 +330,36 @@ fw02).
 4. **Exact CSOT firmware filename** (fw01 vs fw02) — yuemuz3's README and VM-RUNBOOK conflict.
 5. **Wi-Fi/modem firmware availability** for gauguin specifically (FP4 blobs vs gauguin blobs
    from TheMuppets) — not verified.
+
+## Nura Wiki matrix (retrieved 2026-11-05 via browser, Anubis bypassed)
+
+Source: https://wiki.nura.eco/wiki/Xiaomi_Mi_10i_/_Mi_10T_Lite_/_Redmi_Note_9_Pro_5G_(xiaomi-gauguin)
+Status line: **"Boots to Nura, no input methods"** — Nura kernel 7.2.0, mainline: yes, NOT yet in pmaports.
+
+| Feature | Status | Notes |
+|---|---|---|
+| Flashing | ✅ | |
+| USB networking | ✅ | |
+| Screen | ✅ | **Tianma panel (`j17_36`) only**, via MSM DRM in UsrBinLuna's fork (driver from sm7150-mainline) |
+| 3D accel (Adreno 619) | ✅ | freedreno |
+| UFS storage | ✅ | |
+| USB | ⚠️ | peripheral mode only |
+| Touchscreen | ❌ in progress | Novatek NT36672C on SPI; modified sm7150-mainline driver — "half of the screen works, still working on it" |
+| Battery / charging | ❌ | charging IC SMB1395, fuel gauge PM7250B — no driver |
+| Audio | ❌ | WCD9375 + Cirrus CS35L41 — no driver |
+| Wi-Fi / BT | ❌ | **WCN3991** — no driver |
+| GPS | ❌ | SDR735 |
+| Calls / SMS / mobile data | ❌ | no modem driver |
+| Sensors (accel/gyro ICM-40607, ALS bu27030, mag ak0991x) | ❌ | partial driver availability |
+| Camera (IMX682/HM2 main, OV16A1Q front, OV8856 wide, OV02B10 macro) | ❌ | OV8856/OV02B10 drivers exist |
+| Fingerprint (Goodix GF3626/GF3956) | ❌ | no driver |
+| NFC (NXP SN100T) | ❌ | |
+
+**Panel split confirmed:** this test device uses the **Tianma 0x36** panel (`j17_36`), which the fork's
+display driver supports. THIS project's phone is **CSOT 0x42** (`j17_42`, detected from
+`msm_drm.dsi_display0=...j17_42...` + `panel_otp=...0x42...`), so it needs yuemuz3's separate
+`panel-csot-nt36672c.c` — the Tianma driver will NOT light the CSOT panel.
+
+Contributor/maintainer: Zephyr1112 (UsrBinLuna). External links on the page: pmaports fork (with
+firmware), Linux fork (device tree), LineageOS kernel, vendor blobs, proprietary firmware — all on
+GitHub. The wiki is editable; owners self-list there.
