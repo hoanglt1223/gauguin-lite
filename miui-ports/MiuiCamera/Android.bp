@@ -1,5 +1,7 @@
-// MIUI Camera 4.5.002030.1 from MIUI 14.0.4.0 SJSEUXM (gauguin). Populated by scripts/stage-camera-ports.py.
-// Keeps Xiaomi's signature: the app does not use a shared system UID, so it does not need the platform key.
+// MIUI Camera 4.5.002030.1 from MIUI 14.0.4.0 SJSEUXM (gauguin).
+// The APK carries its own 35 bundled JNI libs; these 3 extra *.xiaomi.so bridge libs lived beside
+// the APK on the device. Android 17 forbids copying ELF via PRODUCT_COPY_FILES, so they are declared
+// as soong prebuilt shared libraries (installed to /system/lib64) instead.
 android_app_import {
     name: "MiuiCamera",
     apk: "MiuiCamera.apk",
@@ -8,11 +10,49 @@ android_app_import {
     dex_preopt: {
         enabled: false,
     },
-    required: ["privapp-permissions-miuicamera.xml"],
+    required: [
+        "privapp-permissions-miuicamera.xml",
+        "libcamera_algoup_jni.xiaomi",
+        "libcamera_jpegutil_jni.xiaomi",
+        "libcamera_mianode_jni.xiaomi",
+    ],
 }
 
 prebuilt_etc {
     name: "privapp-permissions-miuicamera.xml",
     src: "privapp-permissions-miuicamera.xml",
     sub_dir: "permissions",
+}
+
+cc_prebuilt_library_shared {
+    name: "libcamera_algoup_jni.xiaomi",
+    owner: "xiaomi",
+    stem: "libcamera_algoup_jni.xiaomi",
+    strip: { none: true },
+    target: { android_arm64: { srcs: ["lib/arm64/libcamera_algoup_jni.xiaomi.so"] } },
+    compile_multilib: "64",
+    check_elf_files: false,
+    prefer: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libcamera_jpegutil_jni.xiaomi",
+    owner: "xiaomi",
+    stem: "libcamera_jpegutil_jni.xiaomi",
+    strip: { none: true },
+    target: { android_arm64: { srcs: ["lib/arm64/libcamera_jpegutil_jni.xiaomi.so"] } },
+    compile_multilib: "64",
+    check_elf_files: false,
+    prefer: true,
+}
+
+cc_prebuilt_library_shared {
+    name: "libcamera_mianode_jni.xiaomi",
+    owner: "xiaomi",
+    stem: "libcamera_mianode_jni.xiaomi",
+    strip: { none: true },
+    target: { android_arm64: { srcs: ["lib/arm64/libcamera_mianode_jni.xiaomi.so"] } },
+    compile_multilib: "64",
+    check_elf_files: false,
+    prefer: true,
 }

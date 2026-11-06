@@ -2,7 +2,6 @@
 PRODUCT_COPY_FILES += \
     $(MIUICAMERA_DIR)deps/product/etc/device_features/gauguin.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/device_features/gauguin.xml \
     $(MIUICAMERA_DIR)deps/product/etc/device_features/gauguinpro.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/device_features/gauguinpro.xml \
-    $(MIUICAMERA_DIR)deps/system/lib64/libcamera_jpegutil_jni.xiaomi.so:$(TARGET_COPY_OUT_SYSTEM)/lib64/libcamera_jpegutil_jni.xiaomi.so \
     $(MIUICAMERA_DIR)deps/vendor/etc/camera/102_SummerDay.png:$(TARGET_COPY_OUT_VENDOR)/etc/camera/102_SummerDay.png \
     $(MIUICAMERA_DIR)deps/vendor/etc/camera/103_Fantasy.png:$(TARGET_COPY_OUT_VENDOR)/etc/camera/103_Fantasy.png \
     $(MIUICAMERA_DIR)deps/vendor/etc/camera/104_Meet.png:$(TARGET_COPY_OUT_VENDOR)/etc/camera/104_Meet.png \

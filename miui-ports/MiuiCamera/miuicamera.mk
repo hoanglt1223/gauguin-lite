@@ -1,10 +1,8 @@
 PRODUCT_PACKAGES += MiuiCamera
 
-# System-app JNI libs live next to the APK, not inside it, so they are copied as files.
-MIUICAMERA_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
-PRODUCT_COPY_FILES += \
-    $(foreach f,$(notdir $(wildcard $(MIUICAMERA_DIR)lib/arm64/*.so)),\
-        $(MIUICAMERA_DIR)lib/arm64/$(f):$(TARGET_COPY_OUT_SYSTEM)/priv-app/MiuiCamera/lib/arm64/$(f))
+# The 3 *.xiaomi.so JNI libs are soong cc_prebuilt_library_shared modules (see Android.bp) and are
+# pulled in via MiuiCamera's `required:` list. The APK's own 35 bundled libs travel inside the APK.
 
-# Extra system libraries and MIUI framework pieces the app loads; list filled from the dependency walk.
+# Non-ELF data files the app reads (device feature list, camera filter thumbnails, face model).
+MIUICAMERA_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 -include $(MIUICAMERA_DIR)deps.mk
