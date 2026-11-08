@@ -1,0 +1,6 @@
+id=miuicam_mivi_sepolicy
+name=MIUI Camera MIVI SELinux fix (gauguin)
+version=v1
+versionCode=1
+author=gauguin-lite
+description=Lets MIUI Camera (priv_app) read/execute the MIVI algo libs already present in /vendor/lib64 (libmialgoengine.so and deps). Fixes the initMiviEngine SIGABRT on LineageOS.

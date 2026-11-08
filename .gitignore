@@ -13,3 +13,5 @@ post-flash/Vector-*.zip
 post-flash/Shamiko-*.zip
 post-flash/PlayIntegrityFix_*.zip
 miflash_unlock_en_*/
+.tools/
+post-flash/*.apk

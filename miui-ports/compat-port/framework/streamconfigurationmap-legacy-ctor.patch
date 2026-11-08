@@ -1,0 +1,47 @@
+--- a/frameworks/base/core/java/android/hardware/camera2/params/StreamConfigurationMap.java
++++ b/frameworks/base/core/java/android/hardware/camera2/params/StreamConfigurationMap.java
+@@ -76,6 +76,44 @@
+     /**
+      * Create a new {@link StreamConfigurationMap}.
+      *
++     * <p>Legacy overload matching the 15-argument constructor shipped through
++     * Android 13. Retained so applications that resolve this exact signature by
++     * name (direct bytecode reference or reflection) keep working. Delegates to
++     * the current constructor, treating Jpeg/R and Heic UltraHDR stream sets as
++     * absent (null, which the delegate converts to empty arrays).</p>
++     *
++     * @hide
++     */
++    public StreamConfigurationMap(
++            StreamConfiguration[] configurations,
++            StreamConfigurationDuration[] minFrameDurations,
++            StreamConfigurationDuration[] stallDurations,
++            StreamConfiguration[] depthConfigurations,
++            StreamConfigurationDuration[] depthMinFrameDurations,
++            StreamConfigurationDuration[] depthStallDurations,
++            StreamConfiguration[] dynamicDepthConfigurations,
++            StreamConfigurationDuration[] dynamicDepthMinFrameDurations,
++            StreamConfigurationDuration[] dynamicDepthStallDurations,
++            StreamConfiguration[] heicConfigurations,
++            StreamConfigurationDuration[] heicMinFrameDurations,
++            StreamConfigurationDuration[] heicStallDurations,
++            HighSpeedVideoConfiguration[] highSpeedVideoConfigurations,
++            ReprocessFormatsMap inputOutputFormatsMap,
++            boolean listHighResolution) {
++        this(configurations, minFrameDurations, stallDurations,
++                depthConfigurations, depthMinFrameDurations, depthStallDurations,
++                dynamicDepthConfigurations, dynamicDepthMinFrameDurations,
++                dynamicDepthStallDurations,
++                heicConfigurations, heicMinFrameDurations, heicStallDurations,
++                /*jpegRConfigurations*/ null, null, null,
++                /*heicUltraHDRConfigurations*/ null, null, null,
++                highSpeedVideoConfigurations, inputOutputFormatsMap,
++                listHighResolution, /*enforceImplementationDefined*/ true);
++    }
++
++    /**
++     * Create a new {@link StreamConfigurationMap}.
++     *
+      * <p>The array parameters ownership is passed to this object after creation; do not
+      * write to them after this constructor is invoked.</p>
+      *
