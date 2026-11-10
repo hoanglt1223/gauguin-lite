@@ -19,7 +19,7 @@ LITE_KEEP_GALLERY_GLIMPSE ?= false  # Glimpse -> MIUI Gallery port or Google Pho
 LITE_KEEP_MUSIC_TWELVE ?= false  # Twelve -> YouTube Music
 LITE_KEEP_BROWSER ?= false  # Jelly -> Chrome
 LITE_KEEP_CALENDAR ?= false  # Etar -> Google Calendar
-LITE_KEEP_MESSAGING ?= false  # Messaging -> Google Messages (install it from Play on first boot)
+LITE_KEEP_MESSAGING ?= true  # Messaging -> Google Messages (install it from Play on first boot)
 LITE_KEEP_CALCULATOR ?= false  # ExactCalculator -> Google Calculator / MIUI Calculator port
 LITE_KEEP_CLOCK ?= false  # DeskClock -> Google Clock
 LITE_KEEP_PDF_VIEWER ?= false  # Camelot -> Google Drive / Files
@@ -32,8 +32,8 @@ LITE_CAM_MIUI ?= true  # MIUI Camera port (miui-ports/MiuiCamera)
 
 # --- Phone and contacts: Google Phone / Contacts / Gboard are installed from Play on first boot.
 # The AOSP keyboard stays so you can type a Wi-Fi password during setup.
-LITE_KEEP_DIALER ?= false  # Dialer -> Google Phone
-LITE_KEEP_CONTACTS ?= false  # Contacts -> Google Contacts
+LITE_KEEP_DIALER ?= true  # Dialer -> Google Phone
+LITE_KEEP_CONTACTS ?= true  # Contacts -> Google Contacts
 
 # --- Media
 LITE_KEEP_AUDIOFX ?= false  # AudioFX: equalizer
@@ -41,7 +41,7 @@ LITE_KEEP_RECORDER ?= true  # Recorder: sound recorder
 LITE_KEEP_FM_RADIO ?= false  # FMRadio: gauguin has an FM tuner
 
 # --- System extras
-LITE_KEEP_UPDATER ?= false  # Updater: OTA client for official builds; useless for self-built Lite
+LITE_KEEP_UPDATER ?= true  # Updater: OTA client, points at lineage.updater.uri (self-hosted OTA)
 LITE_KEEP_FLIPFLAP ?= false  # FlipFlap: flip-cover cases
 LITE_KEEP_PROFILES ?= false  # Profiles: LineageOS system profiles
 LITE_KEEP_PRINT_SERVICE ?= true  # BuiltInPrintService: printing
@@ -83,4 +83,9 @@ LITE_FEATURES := GOOGLE_APP GOOGLE_SPEECH GOOGLE_MARKUP TALKBACK GOOGLE_SETUP \
     CAMERA_APERTURE DIALER CONTACTS AUDIOFX RECORDER FM_RADIO \
     UPDATER FLIPFLAP PROFILES PRINT_SERVICE WALLPAPERS WEBCAM TRACEUR
 
-PRODUCT_PACKAGES_REMOVE += $(foreach f,$(LITE_FEATURES),$(if $(filter false,$(LITE_KEEP_$(f))),$(LITE_MODULES_$(f))))
+# PRODUCT_PACKAGES_REMOVE is not implemented by this build system, so removal goes through
+# override modules (lite/remove/Android.bp): each lite_remove_<FEATURE> overrides its LITE_MODULES_*.
+PRODUCT_PACKAGES += $(foreach f,$(LITE_FEATURES),$(if $(filter false,$(strip $(LITE_KEEP_$(f)))),lite_remove_$(f)))
+
+# System-wide ad blocking through /system/etc/hosts (StevenBlack list, lite/hosts/)
+LITE_ADBLOCK_HOSTS := true

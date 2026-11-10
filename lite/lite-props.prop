@@ -13,3 +13,8 @@ ro.secureboot.lockstate=locked
 # LineageOS endpoint (which has no builds for a self-built ROM, so Updater just shows "up to date").
 lineage.updater.uri=https://YOUR-OTA-HOST/gauguin/gauguin.json
 
+
+# Release ART and no CheckJNI: eng defaults (libartd, ro.kernel.android.checkjni=1) make every app slow
+dalvik.vm.checkjni=false
+persist.sys.dalvik.vm.lib.2=libart.so
+

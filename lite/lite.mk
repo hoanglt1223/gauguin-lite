@@ -18,6 +18,7 @@ endif
 # --- Properties: report bootloader locked, etc.
 PRODUCT_PRODUCT_PROPERTIES += $(call collapse-pairs, $(shell grep -hvE '^\#|^\s*$$' $(LITE_DIR)lite-props.prop))
 
-# --- Drop bulky, non-essential media (boot animation / extra wallpapers when wallpapers are off)
-PRODUCT_PACKAGES_REMOVE += \
-    $(if $(filter false,$(strip $(LITE_KEEP_WALLPAPERS))),LineageWallpapers PhotoTable)
+# --- Ad blocking via /system/etc/hosts (no root needed)
+ifneq ($(strip $(LITE_ADBLOCK_HOSTS)),false)
+PRODUCT_PACKAGES += etc_hosts_adblock
+endif

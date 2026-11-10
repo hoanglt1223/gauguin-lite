@@ -1,0 +1,219 @@
+// One empty module per Lite feature. Installing lite_remove_<FEATURE> keeps the listed
+// modules out of the image through `overrides` (PRODUCT_PACKAGES_REMOVE is not implemented
+// by this build system). Mirrors LITE_MODULES_* in ../features.mk; keep the two in sync.
+
+prebuilt_etc {
+    name: "lite_remove_GOOGLE_APP",
+    src: "empty",
+    filename: "lite_remove_GOOGLE_APP",
+    sub_dir: "lite",
+    overrides: ["Velvet", "VelvetTitan"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_GOOGLE_SPEECH",
+    src: "empty",
+    filename: "lite_remove_GOOGLE_SPEECH",
+    sub_dir: "lite",
+    overrides: ["SpeechServicesByGoogle"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_GOOGLE_MARKUP",
+    src: "empty",
+    filename: "lite_remove_GOOGLE_MARKUP",
+    sub_dir: "lite",
+    overrides: ["MarkupGoogle_v2"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_TALKBACK",
+    src: "empty",
+    filename: "lite_remove_TALKBACK",
+    sub_dir: "lite",
+    overrides: ["talkback"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_GOOGLE_SETUP",
+    src: "empty",
+    filename: "lite_remove_GOOGLE_SETUP",
+    sub_dir: "lite",
+    overrides: ["SetupWizard"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_GALLERY_GLIMPSE",
+    src: "empty",
+    filename: "lite_remove_GALLERY_GLIMPSE",
+    sub_dir: "lite",
+    overrides: ["Glimpse"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_MUSIC_TWELVE",
+    src: "empty",
+    filename: "lite_remove_MUSIC_TWELVE",
+    sub_dir: "lite",
+    overrides: ["Twelve"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_BROWSER",
+    src: "empty",
+    filename: "lite_remove_BROWSER",
+    sub_dir: "lite",
+    overrides: ["Jelly"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_CALENDAR",
+    src: "empty",
+    filename: "lite_remove_CALENDAR",
+    sub_dir: "lite",
+    overrides: ["Etar"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_MESSAGING",
+    src: "empty",
+    filename: "lite_remove_MESSAGING",
+    sub_dir: "lite",
+    overrides: ["messaging"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_CALCULATOR",
+    src: "empty",
+    filename: "lite_remove_CALCULATOR",
+    sub_dir: "lite",
+    overrides: ["ExactCalculator"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_CLOCK",
+    src: "empty",
+    filename: "lite_remove_CLOCK",
+    sub_dir: "lite",
+    overrides: ["DeskClock"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_PDF_VIEWER",
+    src: "empty",
+    filename: "lite_remove_PDF_VIEWER",
+    sub_dir: "lite",
+    overrides: ["Camelot"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_SEEDVAULT",
+    src: "empty",
+    filename: "lite_remove_SEEDVAULT",
+    sub_dir: "lite",
+    overrides: ["Seedvault"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_CAMERA_APERTURE",
+    src: "empty",
+    filename: "lite_remove_CAMERA_APERTURE",
+    sub_dir: "lite",
+    overrides: ["Aperture"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_DIALER",
+    src: "empty",
+    filename: "lite_remove_DIALER",
+    sub_dir: "lite",
+    overrides: ["Dialer"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_CONTACTS",
+    src: "empty",
+    filename: "lite_remove_CONTACTS",
+    sub_dir: "lite",
+    overrides: ["Contacts"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_AUDIOFX",
+    src: "empty",
+    filename: "lite_remove_AUDIOFX",
+    sub_dir: "lite",
+    overrides: ["AudioFX"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_RECORDER",
+    src: "empty",
+    filename: "lite_remove_RECORDER",
+    sub_dir: "lite",
+    overrides: ["Recorder"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_FM_RADIO",
+    src: "empty",
+    filename: "lite_remove_FM_RADIO",
+    sub_dir: "lite",
+    overrides: ["FMRadio"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_UPDATER",
+    src: "empty",
+    filename: "lite_remove_UPDATER",
+    sub_dir: "lite",
+    overrides: ["Updater"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_FLIPFLAP",
+    src: "empty",
+    filename: "lite_remove_FLIPFLAP",
+    sub_dir: "lite",
+    overrides: ["FlipFlap"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_PROFILES",
+    src: "empty",
+    filename: "lite_remove_PROFILES",
+    sub_dir: "lite",
+    overrides: ["Profiles"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_PRINT_SERVICE",
+    src: "empty",
+    filename: "lite_remove_PRINT_SERVICE",
+    sub_dir: "lite",
+    overrides: ["BuiltInPrintService"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_WALLPAPERS",
+    src: "empty",
+    filename: "lite_remove_WALLPAPERS",
+    sub_dir: "lite",
+    overrides: ["Backgrounds", "LineageWallpapers", "PhotoTable"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_WEBCAM",
+    src: "empty",
+    filename: "lite_remove_WEBCAM",
+    sub_dir: "lite",
+    overrides: ["DeviceAsWebcam"],
+}
+
+prebuilt_etc {
+    name: "lite_remove_TRACEUR",
+    src: "empty",
+    filename: "lite_remove_TRACEUR",
+    sub_dir: "lite",
+    overrides: ["Traceur"],
+}

@@ -1,0 +1,38 @@
+--- /tmp/CaptureResultExtras.java.orig	2026-11-09 06:35:49.288353813 +0000
++++ core/java/android/hardware/camera2/impl/CaptureResultExtras.java	2026-11-09 06:35:49.313353873 +0000
+@@ -76,6 +76,35 @@
+         this.readoutTimestamp = readoutTimestamp;
+     }
+ 
++    // Legacy constructors (API 29-33) still reached via reflection by ported
++    // vendor camera apps; missing fields default to "unknown".
++    public CaptureResultExtras(int requestId, int subsequenceId, int afTriggerId,
++                               int precaptureTriggerId, long frameNumber,
++                               int partialResultCount, int errorStreamId) {
++        this(requestId, subsequenceId, afTriggerId, precaptureTriggerId, frameNumber,
++                partialResultCount, errorStreamId, null);
++    }
++
++    public CaptureResultExtras(int requestId, int subsequenceId, int afTriggerId,
++                               int precaptureTriggerId, long frameNumber,
++                               int partialResultCount, int errorStreamId,
++                               String errorPhysicalCameraId) {
++        this(requestId, subsequenceId, afTriggerId, precaptureTriggerId, frameNumber,
++                partialResultCount, errorStreamId, errorPhysicalCameraId, -1, -1, -1);
++    }
++
++    public CaptureResultExtras(int requestId, int subsequenceId, int afTriggerId,
++                               int precaptureTriggerId, long frameNumber,
++                               int partialResultCount, int errorStreamId,
++                               String errorPhysicalCameraId, long lastCompletedRegularFrameNumber,
++                               long lastCompletedReprocessFrameNumber,
++                               long lastCompletedZslFrameNumber) {
++        this(requestId, subsequenceId, afTriggerId, precaptureTriggerId, frameNumber,
++                partialResultCount, errorStreamId, errorPhysicalCameraId,
++                lastCompletedRegularFrameNumber, lastCompletedReprocessFrameNumber,
++                lastCompletedZslFrameNumber, false, 0);
++    }
++
+     @Override
+     public int describeContents() {
+         return 0;

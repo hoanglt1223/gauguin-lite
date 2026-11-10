@@ -15,3 +15,24 @@ post-flash/PlayIntegrityFix_*.zip
 miflash_unlock_en_*/
 .tools/
 post-flash/*.apk
+
+# Leica port local analysis/build data
+miui-ports/leica/*.apk
+miui-ports/leica/extract/
+miui-ports/leica/jadx-small/
+miui-ports/leica/jadx-big/
+miui-ports/leica/strings/
+miui-ports/leica/tools/
+miui-ports/leica/work/
+miui-ports/leica/out/
+miui-ports/leica/keys/
+miui-ports/leica/scripts/__pycache__/
+miui-ports/leica/rea-out/
+miui-ports/leica/test/
+
+# Leica port workspace: APKs, decompiled sources, signing keys (clean scripts live in camera-ports-los24)
+miui-ports/leica/
+# HAL patch workspace: keep only the patch scripts, not vendor blobs, tombstones or logs
+miui-ports/hal-patch/**
+!miui-ports/hal-patch/**/
+!miui-ports/hal-patch/**/*.py
