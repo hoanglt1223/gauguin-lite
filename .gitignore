@@ -39,3 +39,6 @@ miui-ports/hal-patch/**
 
 # Device screenshots and screen recordings from test runs (large, may show personal content)
 plans/reports/open-camera-shots/
+
+# Open Camera release APK, fetched by scripts/fetch-open-camera.sh
+lite/open-camera/*.apk

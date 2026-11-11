@@ -1,0 +1,34 @@
+// Open Camera (github.com/hoanglt1223/open-camera) as a prebuilt: the source tree needs a
+// git-ignored 118 MB OpenCV AAR that only its Gradle build regenerates, so the ROM imports the
+// release APK instead. Fetch it first: scripts/fetch-open-camera.sh (the APK is git-ignored).
+android_app_import {
+    name: "OpenCamera",
+    apk: "OpenCamera.apk",
+    presigned: true,
+    privileged: false,
+    product_specific: true,
+    dex_preopt: {
+        enabled: false,
+    },
+    required: [
+        "preinstalled-packages-opencamera.xml",
+        "OpenCameraGestureOverlay",
+    ],
+}
+
+prebuilt_etc {
+    name: "preinstalled-packages-opencamera.xml",
+    src: "preinstalled-packages-opencamera.xml",
+    sub_dir: "sysconfig",
+    product_specific: true,
+}
+
+// Points the double-press power gesture at Open Camera instead of a chooser when several
+// camera apps (MIUI Camera port, Aperture) are installed. SystemUI falls back to normal
+// intent resolution when the package is missing.
+runtime_resource_overlay {
+    name: "OpenCameraGestureOverlay",
+    manifest: "overlay/AndroidManifest.xml",
+    resource_dirs: ["overlay/res"],
+    product_specific: true,
+}

@@ -25,8 +25,9 @@ LITE_KEEP_CLOCK ?= false  # DeskClock -> Google Clock
 LITE_KEEP_PDF_VIEWER ?= false  # Camelot -> Google Drive / Files
 LITE_KEEP_SEEDVAULT ?= false  # Seedvault -> Google One backup
 
-# --- Cameras (all three can be installed side by side)
-LITE_KEEP_CAMERA_APERTURE ?= true  # Aperture: LineageOS camera
+# --- Cameras (all can be installed side by side)
+LITE_KEEP_OPEN_CAMERA ?= true  # Open Camera (lite/open-camera): default camera and power double-press target
+LITE_KEEP_CAMERA_APERTURE ?= false  # Aperture: LineageOS camera, replaced by Open Camera
 LITE_CAM_MIUI ?= true  # MIUI Camera port (miui-ports/MiuiCamera)
 # GCam ports are ordinary user apps: install them after flashing (APKs kept in miui-ports/GCam).
 

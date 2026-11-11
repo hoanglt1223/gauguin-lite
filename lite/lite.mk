@@ -10,6 +10,11 @@ ifeq ($(strip $(LITE_CAM_MIUI)),true)
 $(call inherit-product, $(LITE_DIR)../miui-ports/MiuiCamera/miuicamera.mk)
 endif
 
+# Prebuilt release APK; fetch it with scripts/fetch-open-camera.sh before building.
+ifeq ($(strip $(LITE_KEEP_OPEN_CAMERA)),true)
+PRODUCT_PACKAGES += OpenCamera
+endif
+
 # --- Google apps (MindTheGapps)
 ifeq ($(strip $(LITE_GAPPS)),true)
 $(call inherit-product, vendor/gapps/arm64/arm64-vendor.mk)
