@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Camera skins</title>
+<style>
+body { margin: 0; background: #111; color: #eee; font-family: system-ui, sans-serif; }
+nav { display: flex; gap: 8px; justify-content: center; padding: 12px; position: sticky; top: 0; background: #111; z-index: 2; }
+nav button { min-height: 44px; padding: 0 18px; border-radius: 22px; border: 1px solid #333; background: #1d1d1d; color: #eee; font: inherit; cursor: pointer; }
+nav button[aria-pressed="true"] { background: #eee; color: #111; }
+iframe { display: block; width: 100%; height: 1040px; border: 0; }
+p { text-align: center; color: #999; font-size: 13px; margin: 0 16px 8px; }
+</style></head>
+<body>
+<nav aria-label="Skin">
+  <button data-s="glass" aria-pressed="true">Glass</button><button data-s="origin">Origin</button>
+  <button data-s="one">One</button><button data-s="classic">Classic</button>
+</nav>
+<p>Swipe or click the preview to change modes or focus. Long-press a zoom chip to open the ring. Pro shows the dials (drag, wheel or arrow keys). The top-bar Looks icon opens the filter strip, the thumbnail opens review, and More opens the mode grid.</p>
+<iframe id="f" src="glass.html" title="Skin preview"></iframe>
+<script>
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
+  document.getElementById('f').src = b.dataset.s + '.html';
+  document.querySelectorAll('nav button').forEach(x => x.setAttribute('aria-pressed', x === b));
+});
+</script>
+</body></html>

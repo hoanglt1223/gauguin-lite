@@ -1,7 +1,7 @@
 ---
 title: "Aperio: app camera mã nguồn mở fork từ LineageOS Aperture"
 description: "Fork Aperture, viết lại bằng code riêng các tính năng của Leica port, MIUI Camera và GCam, kèm hệ thống device profile cho mọi máy."
-status: pending
+status: in-progress
 priority: P2
 effort: 52w
 branch: public
@@ -21,9 +21,14 @@ Báo cáo nguồn và giấy phép: `plans/reports/planner-261109-2101-open-came
 
 Đặc tả chức năng app tham chiếu (lens/profile, looks, hàng đợi nền, composition, runtime AI, Camera2, gap list): [spec-leica-functional.md](spec-leica-functional.md).
 
+## Nguyên tắc bắt buộc: không bao giờ crash (2026-11-11)
+
+Mọi tính năng tùy chọn (multi-frame, look effect, overlay Pro, RAW, chỉnh tay, chọn ống theo profile, gọi JNI/native, ML) phải có đường lùi về mức cơ bản (preview + chụp JPEG) thay vì ném lỗi. Bind CameraX, Camera2 interop, JNI và ghi MediaStore đều phải bọc xử lý lỗi, ghi log lý do và báo người dùng tính năng nào bị tắt. Code native trả mã lỗi, không abort. Lý do: bản phase 4 crash ngay khi mở trên iQOO Neo 11 vì bind quá nhiều luồng camera mà không có đường lùi.
+
 ## Quyết định đã chốt (2026-11-09)
 
 - **Tên:** người dùng chọn `open-camera` thay cho Aperio. Chưa áp vào các phase file vì tên "Open Camera" đã là một app GPL nổi tiếng trên Play Store và F-Droid (package `net.sourceforge.opencamera`), dễ bị nhầm và F-Droid có thể từ chối. Cần chốt lại tên hiển thị và package trước Phase 1.
+  - **Chốt (2026-11-10):** tên hiển thị "Open Camera" (chấp nhận trùng tên), package `dev.opencamera.app`, Soong `OpenCamera`, repo `D:\Projects\open-camera` và `D:\Projects\open-camera-profiles`. Không có flavor `qnn` (theo quyết định AI chỉ CPU/GPU). Mọi chỗ ghi `Aperio`/`org.aperio.camera` trong phase file đọc là tên mới.
 - **AI backend:** chỉ CPU/GPU (ONNX Runtime, LiteRT GPU delegate, NNAPI nếu có). Không làm bản QNN của Qualcomm. Một bản duy nhất, lên được F-Droid.
 - **Device profile database:** repo riêng, app tải bản mới theo từng đợt phát hành.
 - **Ảnh cộng đồng để huấn luyện model:** không nhận. Chỉ dùng model có sẵn với giấy phép mở.
@@ -94,7 +99,10 @@ Luồng dữ liệu: `CameraManager` characteristics → `:profiles` (catalog + 
 | Real-ESRGAN | BSD-3-Clause | Có |
 | NIMA (idealo) | Apache-2.0 | Có |
 | hdr-plus (timothybrooks, Halide) | cần xác minh | Chỉ tham khảo thuật toán cho tới khi xác minh |
-| Zero-DCE / Zero-DCE++ | cần xác minh, có thể chỉ phi thương mại | Không dùng weights cho tới khi xác minh |
+| Zero-DCE / Zero-DCE++ | CC BY-NC 4.0 (README, đã xác minh 2026-11-11) | Loại bỏ |
+| Deep White Balance | Cấm dùng thương mại (README) | Loại bỏ |
+| CodeFormer | NTU S-Lab License 1.0, phi thương mại | Loại bỏ |
+| GFPGAN | Code Apache-2.0, weights dựa trên StyleGAN2 (NVIDIA) + FFHQ | Chỉ tham khảo |
 | MIRNet | cần xác minh | Không dùng weights cho tới khi xác minh |
 | CACNet (composition) | không rõ | Không dùng, tự huấn luyện thay thế |
 | Qualcomm QNN/SNPE | độc quyền, có điều khoản phân phối | Không đưa vào bản F-Droid; chỉ flavor riêng tùy chọn |
@@ -114,10 +122,34 @@ Luồng dữ liệu: `CameraManager` characteristics → `:profiles` (catalog + 
 | 7 | Pro và RAW | 2 | 4w | [phase-07-pro-raw.md](phase-07-pro-raw.md) |
 | 8 | Cầu nối vendor extension | 2, 5 | 4w | [phase-08-vendor-bridge.md](phase-08-vendor-bridge.md) |
 | 9 | Phân phối: F-Droid, ROM qua Soong, bản dịch | 1, 3 (MVP); mọi phase cho 1.0 | 3w + liên tục | [phase-09-distribution.md](phase-09-distribution.md) |
+| 10 | Chế độ sáng tạo: chụp trăng, copy màu từ ảnh mẫu, phơi sáng dài, ảnh động, xếp nét macro, timelapse sao | 3, 4, 5 | 8w | [phase-10-creative-modes.md](phase-10-creative-modes.md) |
+| 11 | Editor retouch: làm đẹp, xóa vật thể, auto-enhance, cân bằng trắng, bầu trời/nền, hình học | 3, 5 | 10w | [phase-11-retouch-editor.md](phase-11-retouch-editor.md) |
+| 12 | Editor hậu kì: chỉnh toàn cục/cục bộ, mask AI, preset, RAW develop, xuất ảnh | 3, 5, 11 | 10w | [phase-12-photo-editor.md](phase-12-photo-editor.md) |
+
+### Tiến độ
+
+- [x] Phase 1: fork + rebrand + module skeleton + CI + docs; `gradlew assembleDebug test lint` xanh, APK cài song song Aperture trên gauguin, preview và chụp ảnh OK. Còn: dựng trong cây LineageOS (`m OpenCamera`), quay video/QR thử tay, chuyển `CameraRepository` sang `:capture`. Báo cáo: `plans/reports/open-camera-261110-1524-phase1.md`.
+- [ ] Phase 2 (đang làm): xong schema, validator, seed gauguin (repo profiles), auto-generate + cache + override + export, unit test 0.6/1x/2 → id 3/0/0 (crop), xác nhận trên máy. Còn: nối `LensPlan` vào `LensSelectorLayout`/`CameraViewModel`, áp dụng quirk trong `:capture`, sinh `profiles.bundle.json` lúc build, đo ANR 20 lần, issue form → PR bot.
+- [ ] Phase 3–9
 
 Tổng khoảng 47 tuần-người cho một người làm chính, cộng 5 tuần dự phòng (52w). Phase 6 và 7 chạy song song với 4/5 nếu có người thứ hai (ranh giới module tách biệt, xem bảng sở hữu file trong từng phase).
 
 Mốc phát hành: **0.1 MVP** = phase 1+2+3; **0.3** = +4; **0.5** = +5; **0.7** = +6+7; **1.0** = +8+9 hoàn chỉnh.
+
+## Ý tưởng bổ sung
+
+Xếp theo giá trị/công sức; chi tiết ở `plans/reports/researcher-261111-1307-camera-app-best-practices.md`.
+
+1. Lưu ảnh JPEG Ultra HDR (gain map) từ pipeline HDR/Night, kèm metadata ISO 21496-1.
+2. Zero shutter lag mặc định (`CAPTURE_MODE_ZERO_SHUTTER_LAG`) với đường lùi về chế độ thường.
+3. Bộ chỉ báo exposure khi quay/chụp Pro: histogram live, zebra, focus peaking, false color.
+4. Ảnh "Live/Motion" có chọn khung đẹp nhất (best take) từ buffer trước khi bấm chụp.
+5. Chụp ProRAW kiểu Expert RAW: DNG đã merge đa khung (linear DNG) thay vì RAW một khung.
+6. Ghi video Log + LUT xem trước (mức Kino), xuất kèm file `.cube` để chỉnh màu sau.
+7. Photographic Styles có thể điều chỉnh (tone/màu) áp lúc chụp, lưu như preset editor.
+8. Chế độ tài liệu nâng cao: phát hiện cạnh, nhiều trang, xuất PDF, OCR offline.
+9. Hẹn giờ thông minh: chụp khi mọi người mở mắt/cười, cử chỉ lòng bàn tay, điều khiển từ đồng hồ/tai nghe.
+10. Kiểm tra nét/mắt nhắm sau khi chụp (cảnh báo ảnh mờ, gợi ý chụp lại).
 
 ## Tiêu chí nghiệm thu chung
 

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Camera skin: One</title>
+<link rel="stylesheet" href="assets/base.css">
+<style>
+/* One: clean cards, large targets in the lower half for one-hand reach, quick-toggle card instead of floating icons. */
+.phone { --accent: #4c8dff; --surface: #1f2126; --sheet-bg: #17181c; --stroke: rgba(255,255,255,.1);
+  --preview-inset: 110px 0 250px 0; --mode-case: none; --mode-spacing: 0; --mode-font-size: 14px;
+  --mode-on: #fff; --lens-bg: #1f2126; --lens-chip: transparent; --lens-chip-on: #3a3d45; --chip-bg: #262830;
+  --more-radius: 18px; --look-radius: 18px; --thumb-radius: 50%; --shutter: 80px; --radius-l: 32px;
+  --font: "Inter", system-ui, sans-serif; }
+.topbar { top: 46px; left: 12px; right: 12px; height: 52px; border-radius: 26px; background: #1f2126; }
+.topbar .ic { width: 48px; height: 48px; }
+.modes { bottom: 178px; height: 44px; }
+.modes button { height: 36px; }
+.modes button.on { background: #3a3d45; }
+.lens { bottom: 262px; }
+.lens button { min-width: 48px; height: 48px; }
+.bottom { bottom: 40px; height: 120px; }
+.shutter { border: 5px solid #fff; }
+.ic.big { width: 56px; height: 56px; background: #262830; }
+.pro-panel { bottom: 250px; margin: 0 10px; border-radius: 24px; background: #1f2126; }
+.pro-tabs button.on { background: #3a3d45; }
+.dial-track span.on { color: #fff; }
+.looks-strip { bottom: 320px; }
+.sheet h3 { font-size: 22px; font-weight: 700; margin: 8px 0 16px; }
+.row { min-height: 60px; padding: 0 16px; margin-bottom: 8px; border: 0; border-radius: 20px; background: #1f2126; }
+</style></head>
+<body><h1 style="font-size:16px;margin:0">One</h1><div id="app"></div>
+<script src="assets/camera-mock.js"></script><script>CameraMock.build(document.getElementById('app'), { name: 'One' });</script>
+</body></html>

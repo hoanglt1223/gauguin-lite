@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Camera Editor — Origin</title>
+<script>document.documentElement.lang = location.hash === '#vi' ? 'vi' : 'en';</script>
+<link rel="stylesheet" href="../../261111-1419-camera-ui-skins/mockups/assets/base.css">
+<link rel="stylesheet" href="assets/editor.css">
+<style>
+/* Origin: solid matte dock, framed image, warm orange accent, icon-over-label tabs (vivo/iQOO album feel). */
+.phone { --accent: #ff8a00; --on-accent: #fff; --surface: #1f1f22; --surface-solid: #1f1f22; --radius-s: 10px; --blur: 0px;
+  --chip-bg: #2a2a2e; --img-inset: 96px 12px 236px 12px; --look-radius: 8px; --dock-bg: #121214; }
+.canvas { border-radius: 6px; }
+.dock { height: 236px; border-top: 1px solid #222; }
+.cats { bottom: 20px; }
+.cats button.on { color: var(--accent); }
+.cats button.on::after { content: ""; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+.ruler-track { opacity: .4; }
+.chips button.on { color: var(--accent); background: transparent; }
+.pill { border-radius: 8px; }
+.sheet { --sheet-bg: #1b1b1e; }
+</style></head>
+<body>
+<div class="ctrl"><a href="index.html">← Skins</a><a href="glass-editor.html">Glass</a><button id="orient">Portrait / Landscape</button><button id="lang">EN / VI</button></div>
+<div id="app"></div>
+<p style="max-width:360px;font-size:12px;color:#999">Drag ruler · double-tap resets · hold photo or ◫ to compare · wheel/double-click zoom · Retouch: paint then Remove ▸ · swipe dock to change tool.</p>
+<script src="assets/editor-mock.js"></script>
+</body></html>

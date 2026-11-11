@@ -36,3 +36,6 @@ miui-ports/leica/
 miui-ports/hal-patch/**
 !miui-ports/hal-patch/**/
 !miui-ports/hal-patch/**/*.py
+
+# Device screenshots and screen recordings from test runs (large, may show personal content)
+plans/reports/open-camera-shots/

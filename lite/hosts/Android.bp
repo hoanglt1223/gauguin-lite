@@ -1,9 +1,18 @@
-// System-wide ad blocking without root: replaces the stock /system/etc/hosts
-// (module "etc_hosts", replaced through `overrides`) with the StevenBlack unified list (MIT).
-// Refresh with ./update-hosts.sh.
+// System-wide ad blocking without root. etc_hosts is pinned in base_system.mk and Soong
+// `overrides` cannot drop it, so the StevenBlack unified list (MIT) is installed to
+// /product/etc/hosts.adblock and bind-mounted over /system/etc/hosts at boot (init rc below).
+// Refresh the list with ./update-hosts.sh.
 prebuilt_etc {
     name: "etc_hosts_adblock",
     src: "hosts",
-    filename: "hosts",
-    overrides: ["etc_hosts"],
+    filename: "hosts.adblock",
+    product_specific: true,
+    required: ["init.lite.hosts.rc"],
+}
+
+prebuilt_etc {
+    name: "init.lite.hosts.rc",
+    src: "init.lite.hosts.rc",
+    sub_dir: "init",
+    product_specific: true,
 }

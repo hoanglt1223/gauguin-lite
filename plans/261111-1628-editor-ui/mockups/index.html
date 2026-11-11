@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Camera Editor — Skins</title>
+<link rel="stylesheet" href="../../261111-1419-camera-ui-skins/mockups/assets/base.css">
+<style>iframe { width: 420px; height: 900px; border: 0; } .wrap { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }</style>
+</head><body>
+<h1 style="font-size:20px">Open Camera — Photo editor / Trình chỉnh ảnh</h1>
+<div class="ctrl"><button data-s="glass-editor.html">Glass (default)</button><button data-s="origin-editor.html">Origin</button><button data-s="both">Side by side / Song song</button></div>
+<div class="wrap" id="w"><iframe title="Glass editor" src="glass-editor.html"></iframe></div>
+<script>
+document.querySelector('.ctrl').onclick = e => { const s = e.target.dataset.s; if (!s) return;
+  const f = n => `<iframe title="${n}" src="${n}"></iframe>`;
+  document.getElementById('w').innerHTML = s === 'both' ? f('glass-editor.html') + f('origin-editor.html') : f(s); };
+</script>
+</body></html>

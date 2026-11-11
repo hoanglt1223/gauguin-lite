@@ -18,3 +18,10 @@ lineage.updater.uri=https://YOUR-OTA-HOST/gauguin/gauguin.json
 dalvik.vm.checkjni=false
 persist.sys.dalvik.vm.lib.2=libart.so
 
+
+# Video thumbnails on the software AVC/HEVC decoder: c2.qti.* output buffers can't be wrapped by FrameDecoder's async path and mediaserver segfaults
+media.stagefright.thumbnail.prefer_hw_codecs=false
+
+# Expose the aux cameras (ultrawide/macro/depth ids) to every app: with this prop empty, Camera.shouldExposeAuxCamera()
+# falls back to the caller's own package name. A list would hit the 91-byte property limit.
+vendor.camera.aux.packagelist=

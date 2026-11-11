@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Open Camera skin: Origin</title>
+<link rel="stylesheet" href="assets/base.css">
+<style>
+/* Origin: bold, gradient accent, pill mode indicator, springy motion. */
+.phone { --accent: #ffb547; --grad: linear-gradient(135deg,#ff7a45,#ffb547); --surface: rgba(18,18,22,.8); --sheet-bg: #15151a;
+  --preview-inset: 92px 0 230px 0; --preview-radius: 20px; --mode-case: none; --mode-spacing: 0; --mode-font-size: 15px; --mode-weight: 700;
+  --mode-on: #111; --lens-chip-on: #fff; --chip-bg: #24242b; --more-radius: 50%; --look-radius: 50%; --focus-radius: 50%;
+  --dur-med: 260ms; --ease: cubic-bezier(.22,1,.36,1); }
+.preview { margin: 0 8px; }
+.modes { bottom: 168px; }
+.modes button.on { background: var(--grad); color: #111; }
+.lens { bottom: 240px; background: rgba(0,0,0,.4); }
+.lens button.on { color: #111; }
+.shutter { border: 0; background: conic-gradient(from 210deg,#ff7a45,#ffb547,#ff7a45); padding: 4px; }
+.shutter .core { width: 68px; height: 68px; box-shadow: 0 0 0 4px #000; }
+.phone[data-mode="Video"] .shutter { background: conic-gradient(#ff3d60,#ff8a4c,#ff3d60); }
+.ic.big { background: #24242b; }
+.thumb { border: 2px solid #ffb547; }
+.pro-panel { bottom: 232px; background: rgba(0,0,0,.55); }
+.pro-tabs button.on { background: var(--grad); }
+.pro-tabs button.on b, .pro-tabs button.on small { color: #111; }
+.looks-strip { bottom: 290px; }
+.looks-strip button.on span { border-color: #ff7a45; box-shadow: 0 0 0 2px #ffb547; }
+.row.link { color: #ffb547; }
+</style></head>
+<body><h1 style="font-size:16px;margin:0">Origin</h1><div id="app"></div>
+<script src="assets/camera-mock.js"></script><script>CameraMock.build(document.getElementById('app'), { name: 'Origin' });</script>
+</body></html>

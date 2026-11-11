@@ -1,0 +1,23 @@
+--- a/media/libstagefright/FrameDecoder.cpp	2026-11-10 08:31:32.511453509 +0000
++++ b/media/libstagefright/FrameDecoder.cpp	2026-11-10 08:31:32.652452218 +0000
+@@ -815,7 +815,19 @@
+             return NO_INIT;
+         }
+ 
+-        uint8_t* frameData = converter.wrap()->data();
++        // Vendor decoders (e.g. c2.qti.*) may return a layout that cannot be wrapped
++        // in place; fall back to copying into a packed back buffer like CCodecBuffers.
++        sp<ABuffer> frameBuffer = converter.wrap();
++        if (frameBuffer == nullptr) {
++            frameBuffer = new ABuffer(converter.backBufferSize());
++            if (!converter.setBackBuffer(frameBuffer)
++                    || converter.copyToMediaImage() != OK) {
++                ALOGE("failed to copy output buffer %d", index);
++                mDecoder->releaseOutputBuffer(index);
++                return ERROR_MALFORMED;
++            }
++        }
++        uint8_t* frameData = frameBuffer->data();
+         sp<ABuffer> imageData = converter.imageData();
+         if (imageData != nullptr) {
+             mOutputFormat->setBuffer("image-data", imageData);
