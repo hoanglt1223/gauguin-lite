@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Release builds use dev.opencamera.app, test builds dev.opencamera.app.dev. -->
+<!-- The ROM ships the signed release (dev.opencamera.app); dev.opencamera.app.dev is for test builds. -->
 <config>
     <install-in-user-type package="dev.opencamera.app">
         <install-in user-type="FULL" />
