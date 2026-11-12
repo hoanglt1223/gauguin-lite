@@ -42,3 +42,9 @@ plans/reports/open-camera-shots/
 
 # Open Camera release APK, fetched by scripts/fetch-open-camera.sh
 lite/open-camera/*.apk
+
+# Perfetto traces from latency audits (large)
+plans/reports/perf-traces/*.pftrace
+
+# Device traces, logs and screenshots from perf runs (large, may contain device data)
+plans/reports/perf-traces/
