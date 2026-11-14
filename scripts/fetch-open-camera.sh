@@ -9,9 +9,9 @@
 # Run on the build machine from the gauguin-lite tree (or the local repo) before building.
 set -euo pipefail
 REPO=hoanglt1223/open-camera
-PINNED_TAG=v0.1.0-beta2
-PINNED_ASSET=open-camera-0.1.0-beta2.apk
-PINNED_SHA256=c0beccf10f391abb5d7e13c134150ab85684978e87e9af08a9f11c82860ce1ee
+PINNED_TAG=v0.1.0-beta5
+PINNED_ASSET=open-camera-0.1.0-beta5.apk
+PINNED_SHA256=02b775a4bd0e05b3562dd3c4c1b1c17fe85bfb7112421344c6049bf0300f6d61
 TAG=${1:-$PINNED_TAG}
 [ "$TAG" = latest ] && TAG=
 ASSET=${2:-}
